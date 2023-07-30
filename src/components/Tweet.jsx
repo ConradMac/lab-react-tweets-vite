@@ -1,39 +1,58 @@
-function Tweet() {
-  return (
-    <div className="tweet">
-      <img
-        src="https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/ih_logo.jpeg"
-        className="profile"
-        alt="profile"
-      />
+import React from "react";
+import ProfileImage from "./ProfileImage";
+import User from "./User";
+import Timestamp from "./Timestamp";
+import Message from "./Message";
+import Actions from "./Actions";
 
-      <div className="body">
-        <div className="top">
-          <span className="user">
-            <span className="name">Ironhack</span>
-            <span className="handle">@ironhack</span>
-          </span>
+function Tweet(props) {
+    console.log(props);
+    return (
+        <div className="tweet">
+            {/* <img src={props.tweet.user.image} className="profile" alt="profile" /> 
+on invoke ici les images en faisant appel au composant.*/}
+            <ProfileImage image={props.tweet.user.image} />
 
-          <span className="timestamp">Nov 30, 2020</span>
+            <div className="body">
+                <div className="top">
+                    <span className="user">
+                        <User name={props.tweet.user.name} handle={props.tweet.user.handle} />
+                    </span>
+
+                    {/* <span className="timestamp">{props.tweet.timestamp}</span> */}
+                    <span className="timestamp">
+                        <Timestamp time={props.tweet.timestamp}></Timestamp>
+                    </span>
+                </div>
+
+                {/* <p className="message">{props.tweet.message} 🚀</p> */}
+                <p className="message">
+                    <Message message={props.tweet.message}></Message> 🚀
+                </p>
+
+                {/* <div className="actions">
+                    Font Awesome icons
+                    <i className="far fa-comment"></i>
+                    <i className="fas fa-retweet"></i>
+                    <i className="far fa-heart"></i>
+                    <i className="fas fa-share"></i> 
+                </div> */}
+                <Actions></Actions>
+            </div>
+
+            <i className="fas fa-ellipsis-h"></i>
         </div>
-
-        <p className="message">
-          On December 7th, we will be hosting a #webinar that will introduce you
-          to #SQL! Are you ready? 🚀
-        </p>
-
-        <div className="actions">
-          {/* Font Awesome icons */}
-          <i className="far fa-comment"></i>
-          <i className="fas fa-retweet"></i>
-          <i className="far fa-heart"></i>
-          <i className="fas fa-share"></i>
-        </div>
-      </div>
-
-      <i className="fas fa-ellipsis-h"></i>
-    </div>
-  );
+    );
 }
+
+// function App() {
+//     return (
+//         <div className="App">
+//             {tweetsArray.map((tweet, index) => (
+//                 <Tweet key={index} tweet={tweet} />
+//             ))}
+//         </div>
+//     );
+// }
 
 export default Tweet;
